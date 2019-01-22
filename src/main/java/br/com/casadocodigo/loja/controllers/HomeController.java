@@ -96,8 +96,8 @@ public class HomeController {
 		produto.setDataLancamento(data);
 		produto.setDescricao(descricao);
 		Preco ebook = new Preco(new BigDecimal(precos[0]), TipoPreco.EBOOK);
-		Preco impresso = new Preco(new BigDecimal(precos[0]), TipoPreco.IMPRESSO);
-		Preco combo = new Preco(new BigDecimal(precos[0]), TipoPreco.COMBO);
+		Preco impresso = new Preco(new BigDecimal(precos[1]), TipoPreco.IMPRESSO);
+		Preco combo = new Preco(new BigDecimal(precos[2]), TipoPreco.COMBO);
 		produto.setPrecos(Arrays.asList(ebook,impresso, combo));
 		return produto;
 	}
