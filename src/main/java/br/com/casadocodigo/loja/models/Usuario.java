@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,10 +25,13 @@ public class Usuario implements UserDetails {
 	private String senha;
 	private String nome;
 
+	@Transient
+	private String confirmaSenha;
+
+	
+
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "Usuario_Role",
-		joinColumns = @JoinColumn(name = "email"), 
-		inverseJoinColumns = @JoinColumn(name = "role_nome"))
+	@JoinTable(name = "Usuario_Role", joinColumns = @JoinColumn(name = "email"), inverseJoinColumns = @JoinColumn(name = "role_nome"))
 	private List<Role> roles = new ArrayList<>();
 
 	public String getEmail() {
@@ -60,6 +64,18 @@ public class Usuario implements UserDetails {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
+
+	public boolean senhasConfirmam() {
+		return senha.equals(confirmaSenha);
 	}
 
 	@Override
@@ -96,5 +112,5 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 }
