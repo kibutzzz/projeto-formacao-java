@@ -49,3 +49,15 @@ alter table Produto_precos add constraint FK_hl4xdmygc7v2x607r4rbs6x3a foreign k
 alter table Usuario_Role add constraint FK_5nbp4m2sk65w2mq9rfn680cx2 foreign key (role_nome) references Role (nome);
 alter table Usuario_Role add constraint FK_4w45e3buitnd4f3ok8jdlrqkh foreign key (email) references Usuario (email);
 ```
+
+##Utilizando o projeto
+
+para popular o banco com os dados padrões, pode ser utilizada a url `/url-magica-maluca-oajksfbvad6584i57j54f9684nvi658efnoewfmnvowefnoeijn`. Será cadastrado um usuario administrador com email `admin@casadocodigo.com.br` e senha `123456`.
+
+Administradores possuem a disposição diversas funcionalidades que usuarios comuns não possuem, como cadastro de novo usuarios, alteração nas roles que cada usuario possui, cadastro de novos produtos, etc.
+
+Existe uma pagina de relatorio que busca os produtos cadastrados no banco,  retornando no formato de  JSON para o cliente. A url da pagina `/relatorio-produtos`. 
+Este relatorio pode ser filtrado adicionando o parametro data na url (e.g. `relatorio-produtos?data=2018-04-02`). Este parametro faz com que os produtos sejam filtrados de forma que o json de retorno só possua produtos que foram lançados depois da data passada. 
+O padrão da data é `yyyy-MM-dd.`
+
+
