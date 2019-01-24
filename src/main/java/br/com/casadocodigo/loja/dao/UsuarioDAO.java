@@ -7,9 +7,11 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.casadocodigo.loja.models.Role;
 import br.com.casadocodigo.loja.models.Usuario;
 
 @Repository
@@ -32,11 +34,20 @@ public class UsuarioDAO implements UserDetailsService{
 	}
 
 	public void gravar(Usuario usuario) {
+		
 		manager.persist(usuario);
 	}
 	
 	
 	public List<Usuario> listarUsuarios(){
 		return manager.createQuery("select u from Usuario u", Usuario.class).getResultList();
+	}
+
+	public void gravarRoles(Usuario usuario) {
+		String email = usuario.getEmail();
+		List<Role> roles = usuario.getRoles();
+		
+		usuario = manager.find(Usuario.class, email);
+		usuario.setRoles(roles);
 	}
 }

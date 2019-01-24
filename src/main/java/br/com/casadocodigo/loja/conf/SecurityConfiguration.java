@@ -30,6 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/usuarios").hasRole("ADMIN")
 			.antMatchers("/usuarios/form").hasRole("ADMIN")
 			.antMatchers("/usuarios/cadastrar-usuario").hasRole("ADMIN")
+			.antMatchers("/usuarios/editar").hasRole("ADMIN")
+			.antMatchers("/usuarios/atualizar").hasRole("ADMIN")
 			.antMatchers("/url-magica-maluca-oajksfbvad6584i57j54f9684nvi658efnoewfmnvowefnoeijn").permitAll()
 			.anyRequest().authenticated()
 			.and()
